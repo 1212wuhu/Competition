@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="信创大赛demo" />
+        <meta name="author" content="OS-Easy" />
+        <title>Log In</title>
+    </head>
+    <body>
+        <h1>Log In</h1>
+        <form action="/website/api/login/" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="submit" value="Log In" />
+        </form>
+        <!-- 红色字体的报错信息 -->
+        <p style="color:red">{{message}}</p>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="信创大赛demo" />
+        <meta name="author" content="OS-Easy" />
+        <title>Log In</title>
+    </head>
+    <body>
+        <h1>产品目录</h1>
+        <!-- 产品目录，用table展示，有id available_products_count parent name四个字段 -->
+        <table border="1">
+            <tr>
+                <td>id</td>
+                <td>available_products_count</td>
+                <td>parent</td>
+                <td>name</td>
+            </tr>
+            {% for product_folder in products_folder %}
+            <tr>
+                <td>{{product_folder.id}}</td>
+                <td>{{product_folder.available_products_count}}</td>
+                <td>{{product_folder.parent}}</td>
+                <td>{{product_folder.name}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h1>产品列表</h1>
+        <!-- 产品列表，也用table展示，有id name product_folder product_ref四个字段，其中product_ref又有hardware_config.vcpu hardware_config.ram hardware_config.disk三个字段 -->
+        <table border="1">
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>product_folder</td>
+                <td>hardware_config.vcpu</td>
+                <td>hardware_config.ram</td>
+                <td>hardware_config.disk</td>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.product_folder}}</td>
+                <td>{{product.product_ref.hardware_config.vcpu}}</td>
+                <td>{{product.product_ref.hardware_config.ram}}</td>
+                <td>{{product.product_ref.hardware_config.disk}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/website/desktops/">前往服务桌面</a>
+    </body>
+</html>

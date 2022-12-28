@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="信创大赛demo" />
+        <meta name="author" content="OS-Easy" />
+        <title>Log In</title>
+    </head>
+    <body>
+        <h1>登录成功，当前用户配额为：</h1>
+        <!-- 配额接口的字段格式为：
+        {
+            "code": 0,
+            "result": {
+                "port": "8088",
+                "quotas": {
+                    "desktop_count": 1,
+                    "total_cpu": 99,
+                    "total_data_disk": 999,
+                    "total_ip_count": 3,
+                    "total_ip_list": [
+                        "172.17.28.15",
+                        "172.17.28.14",
+                        "172.17.28.16"
+                    ],
+                    "total_ips": 3,
+                    "total_memory": 99,
+                    "total_ram": 101376,
+                    "total_system_disk": 999,
+                    "usable_cpu": 95,
+                    "usable_data_disk": 999,
+                    "usable_ip_count": 2,
+                    "usable_ip_list": [
+                        "172.17.28.14",
+                        "172.17.28.16"
+                    ],
+                    "usable_ips": 2,
+                    "usable_memory": 93,
+                    "usable_ram": 95232,
+                    "usable_system_disk": 979,
+                    "used_cpu": 4,
+                    "used_data_disk": 0,
+                    "used_ip_count": 1,
+                    "used_ip_list": [
+                        "172.17.28.15"
+                    ],
+                    "used_ips": 1,
+                    "used_memory": 6,
+                    "used_ram": 6144,
+                    "used_system_disk": 20
+                }
+            }
+        }
+        下面用表格展示出来 -->
+        <table border="1">
+            <tr>
+                <td>port</td>
+                <td>{{result.port}}</td>
+            </tr>
+            <tr>
+                <td>desktop_count</td>
+                <td>{{result.quotas.desktop_count}}</td>
+            </tr>
+            <tr>
+                <td>total_cpu</td>
+                <td>{{result.quotas.total_cpu}}</td>
+            </tr>
+            <tr>
+                <td>total_data_disk</td>
+                <td>{{result.quotas.total_data_disk}}</td>
+            </tr>
+            <tr>
+                <td>total_ip_count</td>
+                <td>{{result.quotas.total_ip_count}}</td>
+            </tr>
+            <tr>
+                <td>total_ip_list</td>
+                <td>{{result.quotas.total_ip_list}}</td>
+            </tr>
+            <tr>
+                <td>total_ips</td>
+                <td>{{result.quotas.total_ips}}</td>
+            </tr>
+            <tr>
+                <td>total_memory</td>
+                <td>{{result.quotas.total_memory}}</td>
+            </tr>
+            <tr>
+                <td>total_ram</td>
+                <td>{{result.quotas.total_ram}}</td>
+            </tr>
+            <tr>
+                <td>total_system_disk</td>
+                <td>{{result.quotas.total_system_disk}}</td>
+            </tr>
+            <tr>
+                <td>usable_cpu</td>
+                <td>{{result.quotas.usable_cpu}}</td>
+            </tr>
+            <tr>
+                <td>usable_data_disk</td>
+                <td>{{result.quotas.usable_data_disk}}</td>
+            </tr>
+            <tr>
+                <td>usable_ip_count</td>
+                <td>{{result.quotas.usable_ip_count}}</td>
+            </tr>
+            <tr>
+                <td>usable_ip_list</td>
+                <td>{{result.quotas.usable_ip_list}}</td>
+            </tr>
+            <tr>
+                <td>usable_ips</td>
+                <td>{{result.quotas.usable_ips}}</td>
+            </tr>
+            <tr>
+                <td>usable_memory</td>
+                <td>{{result.quotas.usable_memory}}</td>
+            </tr>
+            <tr>
+                <td>usable_ram</td>
+                <td>{{result.quotas.usable_ram}}</td>
+            </tr>
+            <tr>
+        </table>
+        <a href="/website/products/">前往产品列表</a>
+    </body>
+</html>

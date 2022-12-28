@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="信创大赛demo" />
+        <meta name="author" content="OS-Easy" />
+        <title>服务桌面</title>
+    </head>
+    <body>
+        <h1>服务桌面</h1>
+        <!-- 服务桌面列表，以table展示，主要有id instance_id name system status description ips task_state字段 -->
+        <table border="1">
+            <tr>
+                <td>id</td>
+                <td>instance_id</td>
+                <td>name</td>
+                <td>system</td>
+                <td>status</td>
+                <td>description</td>
+                <td>ips</td>
+                <td>task_state</td>
+            </tr>
+            {% for desktop in desktops %}
+            <tr>
+                <td>{{desktop.id}}</td>
+                <td>{{desktop.instance_id}}</td>
+                <td>{{desktop.name}}</td>
+                <td>{{desktop.system}}</td>
+                <td>{{desktop.status}}</td>
+                <td>{{desktop.description}}</td>
+                <td>{{desktop.ips}}</td>
+                <td>{{desktop.task_state}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h1>创建服务桌面</h1>
+        <form action="/website/api/desktops/" method="post">
+            {% csrf_token %}
+            <label for="display_name">display_name</label><input type="text" id="display_name" name="display_name" /><br />
+            <label for="start_ip">start_ip</label><select id="start_ip" name="start_ip">
+                {% for ip in quotas.usable_ip_list %}
+                <option value="{{ip}}">{{ip}}</option>
+                {% endfor %}
+            </select><br />
+            <label for="description">description</label><input type="text" id="description" name="description" /><br />
+            <label for="product_id">product_id</label><select id="product_id" name="product_id">
+                {% for product in products %}
+                <option value="{{product.id}}">{{product.name}}</option>
+                {% endfor %}
+            </select><br />
+            <label for="memory_mb">memory_mb</label>
+            <input type="range" id="memory_mb" name="memory_mb" min="1" max="{% widthratio quotas.usable_ram 1024 1 %}" step="1"
+                oninput="this.nextElementSibling.value = this.value">
+            <output>1</output><br />
+            <label for="vcpu">vcpu</label><input type="range" id="vcpu" name="vcpu" min="1" max="{{quotas.usable_cpu}}"
+                oninput="this.nextElementSibling.value = this.value" /><output>1</output><br />
+            <label for="system_gb">system_gb</label><input type="range" id="system_gb" name="system_gb" min="1"
+                max="{{quotas.usable_system_disk}}"
+                oninput="this.nextElementSibling.value = this.value" /><output>1</output><br />
+            <label for="local_gb">local_gb</label><input type="range" id="local_gb" name="local_gb" min="0"
+                max="{{quotas.usable_system_disk}}"
+                oninput="this.nextElementSibling.value = this.value" /><output>0</output><br />
+            <input type="submit" value="创建服务桌面" />
+        </form>
+        <!-- 红色字体的报错信息 -->
+        <p style="color:red">{{message}}</p>
+    </body>
+</html>
